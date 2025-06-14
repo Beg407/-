@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Հայոց Պատմություն</title>
+  <style>
+  /* Բաց տեսք և գույներ */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f5f0;
+    color: #2a2a2a;
+    line-height: 1.6;
+  }
+  
+  /* Հատկանշական վերնագիր */
+  header {
+    background-color: #7c1c1c;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  
+  /* Նավիգացիայի ոճ */
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  nav li {
+    margin: 0;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover,
+  nav a:focus {
+    background-color: #a02e2e;
+    outline: none;
+  }
+  
+  /* Մակերեսի հիմնական հատված */
+  main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  
+  /* Սեգմենտների ընդհանուր ոճ */
+  .section {
+    background-color: #fff;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    border-left: 7px solid #7c1c1c;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  
+  .section h2 {
+    margin-top: 0;
+    color: #7c1c1c;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    letter-spacing: 1.2px;
+  }
+  
+  /* Պատկերների ձևավորում */
+  .section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  /* Ցուցակների ոճ */
+  ul {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  ul li {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  
+  /* Կապ բաժնի հատուկ ձևավորում */
+  .contact {
+    text-align: center;
+    background-color: #eee;
+    border-left-color: #a02e2e;
+  }
+  
+  .contact a {
+    color: #7c1c1c;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact a:hover,
+  .contact a:focus {
+    color: #a02e2e;
+    outline: none;
+  }
+  
+  /* Կայքի ներքևի մասի ոճ */
+  footer {
+    background-color: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    user-select: none;
+  }
+  
+  /* Ժամանակացույցի ցուցակը */
+  #timeline ul {
+    border-left: 3px solid #7c1c1c;
+    padding-left: 15px;
+    margin-top: 10px;
+  }
+  
+  #timeline ul li {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 1.1rem;
+  }
+  
+  #timeline ul li::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: #7c1c1c;
+    border-radius: 50%;
+  }
+  
+  /* Պատկերասրահի ոճ */
+  #gallery img {
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  #gallery img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  /* Պատասխանատու դիզայն փոքր էկրանների համար */
+  @media (max-width: 600px) {
+    nav ul {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    header h1 {
+      font-size: 2rem;
+    }
+  
+    .section {
+      padding: 20px;
+    }
+  }
+  /* Թաքցնել ստեղծողի բաժինը սկզբում */
+.creator-info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    z-index: 1000;
+    display: none;
+  }
+  
+  .creator-info.visible {
+    display: block;
+  }
+  
+  /* Կոճակների ոճ */
+  .info-button-wrapper {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  #infoBtn, #closeBtn {
+    background-color: #7c1c1c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  #infoBtn:hover, #closeBtn:hover {
+    background-color: #a02e2e;
+  }
+  #factBtn {
+    background-color: #7c1c1c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  #factBtn:hover {
+    background-color: #a02e2e;
+    transform: scale(1.05);
+  }
+  #factBtn {
+    background: linear-gradient(45deg, #7c1c1c, #a02e2e);
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(124, 28, 28, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  #factBtn:hover {
+    background: linear-gradient(45deg, #a02e2e, #7c1c1c);
+    transform: scale(1.07);
+    box-shadow: 0 6px 20px rgba(124, 28, 28, 0.6);
+  }
+  body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ddd;
+  }
+  
+  body.dark-mode .section {
+    background-color: #2c2c2c;
+    border-left-color: #bbb;
+  }
+  
+  body.dark-mode header,
+  body.dark-mode footer {
+    background-color: #111;
+    color: #eee;
+  }
+  
+  body.dark-mode a {
+    color: #f2a365;
+  }
+  #darkModeToggle {
+    background-color: #7c1c1c;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  #darkModeToggle:hover {
+    background-color: #a02e2e;
+    transform: scale(1.05);
+  }
+  #quiz-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .answer-btn {
+    display: block;
+    background-color: #7c1c1c;
+    color: white;
+    border: none;
+    margin: 10px auto;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  .answer-btn:hover {
+    background-color: #a02e2e;
+  }
+  
+  #nextBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  #nextBtn:hover {
+    background-color: #666;
+  }
+  
+  #feedback {
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.1rem;
+  }
+  #places button {
+  margin: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+  </style>
+  
+</head>
+<meta name="description" content="Հայոց պատմության կրթական կայք՝ վիկտորինաներով, փաստերով և տեղեկություններով։">
+<meta name="keywords" content="Հայոց պատմություն, Հայաստան, վիկտորինա, պատմություն, Հայկական կայք">
+<meta name="author" content="Բեգ Փաշինյան">
+
+<body>
+
+  <header>
+    <button id="darkModeToggle">🌙 Մութ ռեժիմ</button>
+
+    <h1>Հայոց Պատմություն</h1>
+    <nav>
+      <ul>
+        <li><a href="#intro">Գլխավոր</a></li>
+        <li><a href="#prehistoric">Նախապատմություն</a></li>
+        <li><a href="#kingdoms">Թագավորություններ</a></li>
+        <li><a href="#medieval">Միջնադարյան Հայաստան</a></li>
+        <li><a href="#genocide">Ցեղասպանություն</a></li>
+        <li><a href="#artsakh">Արցախյան Պատերազմներ</a></li>
+        <li><a href="#modern">Ժամանակակից Հայաստան</a></li>
+        <li><a href="#figures">Հայտնի Դեմքեր</a></li>
+        <li><a href="#gallery">Պատկերասրահ</a></li>
+        <li><a href="#timeline">Ժամանակացույց</a></li>
+        <li><a href="#contact">Կապ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Գլխավոր Բաժին -->
+    <section id="intro" class="section">
+      <h2>Բարի գալուստ Հայոց Պատմության Աշխարհ</h2>
+      <p>Հայաստանը՝ պատմության գրկում գտնվող մի հինավուրց քաղաքակրթություն, ունեցել է փառավոր վերելքներ և ողբերգական անկումներ։ Այս կայքում Դուք կարող եք ուսումնասիրել մեր բազմադարյան պատմությունը՝ դարաշրջան առ դարաշրջան։</p>
+    </section>
+
+    <!-- Նախապատմություն -->
+    <section id="prehistoric" class="section">
+      <h2>Նախապատմություն</h2>
+      <p>Հայկական լեռնաշխարհը բնակեցված է եղել դեռևս պալեոլիթյան ժամանակաշրջանից։ Արենիի քարանձավում հայտնաբերվել են աշխարհի ամենահին կոշիկը և գինեգործարան։ Շումերական սեպագիր աղբյուրներում հիշատակվում է Արատտա երկիրը, որը, ըստ որոշ տեսությունների, համապատասխանում է Հայաստանի տարածքին։</p>
+    </section>
+
+    <!-- Թագավորություններ -->
+    <section id="kingdoms" class="section">
+      <h2>Մեծ Հայք և Թագավորություններ</h2>
+      <p>Հայոց պետականության արմատները հասնում են Ուրարտու թագավորությանը։ Հետագայում կազմավորվեցին Արտաշեսյան, Արշակունի և Բագրատունի թագավորությունները։</p>
+      <ul>
+        <li><strong>Տիգրան Մեծ</strong> — Մ.թ.ա. 1-ին դարում Հայաստանը վերածեց հզոր կայսրության՝ հասնելով Միջերկրական։</li>
+        <li><strong>301 թ․</strong> — Հայաստանը առաջինն ընդունեց քրիստոնեությունը՝ որպես պետական կրոն։</li>
+        <li><strong>Անի քաղաքը</strong>՝ հազար ու մի եկեղեցու քաղաք։</li>
+      </ul>
+    </section>
+
+    <!-- Միջնադարյան Հայաստան -->
+    <section id="medieval" class="section">
+      <h2>Միջնադարյան Հայաստան</h2>
+      <p>Արաբական արշավանքներից հետո Հայաստանը վերականգնեց պետականությունը Բագրատունիների ղեկավարությամբ։ 11-13-րդ դարերում Կիլիկյան Հայաստանը դարձավ մշակութային և քաղաքական կենտրոն։</p>
+      <ul>
+        <li>Անիի ճարտարապետություն՝ միջնադարի գլուխգործոց</li>
+        <li>Մեսրոպ Մաշտոց, Անանիա Շիրակացի, Գրիգոր Նարեկացի</li>
+        <li>Կիլիկյան թագավորություն՝ արևմտյան դիվանագիտության առաջամարտիկ</li>
+      </ul>
+    </section>
+
+    <!-- Ցեղասպանություն -->
+    <section id="genocide" class="section">
+      <h2>Հայոց Ցեղասպանություն</h2>
+      <p>1915 թ.՝ Օսմանյան կայսրությունը սկսեց հայերի զանգվածային բնաջնջում։ Մոտ 1.5 միլիոն հայեր սպանվեցին կամ տեղահանվեցին։</p>
+      <img src="cexaspanutyun.jpg" alt="Genocide" width="100%">
+    </section>
+
+    <!-- Արցախյան պատերազմներ -->
+    <section id="artsakh" class="section">
+      <h2>Արցախյան պատերազմներ</h2>
+      <p>1990-ականներին և 2020 թ․ տեղի ունեցած պատերազմները մեծ ազդեցություն ունեցան ՀՀ քաղաքականության և անվտանգության վրա։ Արցախի բնակչությունն իր ինքնորոշման իրավունքի համար պայքարեց անկախության համար։</p>
+    </section>
+
+    <!-- Ժամանակակից Հայաստան -->
+    <section id="modern" class="section">
+      <h2>Ժամանակակից Հայաստան</h2>
+      <p>1991 թ․ անկախության հռչակումից հետո Հայաստանը մուտք գործեց նոր դարաշրջան։ Բազմաթիվ քաղաքական ու սոցիալական մարտահրավերներից հետո երկիրը շարունակում է զարգանալ՝ միաժամանակ պահպանելով իր պատմամշակութային ժառանգությունը։</p>
+    </section>
+
+    <!-- Հայտնի դեմքեր -->
+    <section id="figures" class="section">
+      <h2>Պատմական դեմքեր</h2>
+      <ul>
+        <li>Մեսրոպ Մաշտոց – Հայոց գրերի ստեղծող</li>
+        <li>Տիգրան Մեծ – Մեծ Հայաստանը տարածած արքան</li>
+        <li>Գարեգին Նժդեհ – Ազատամարտիկ և գաղափարախոս</li>
+        <li>Հովհաննես Թումանյան – Բանաստեղծ և հասարակական գործիչ</li>
+      </ul>
+
+    </section>
+
+    <!-- Պատկերասրահ -->
+    <section id="gallery" class="section">
+      <h2>Պատկերասրահ</h2>
+      <img src="Ararat.jpg" width="100%" alt="Արարատ լեռ">
+      <img src="map_arm.jpg" width="100%" alt="Հայաստանի քարտեզ">
+    </section>
+
+    <!-- Ժամանակացույց -->
+    <section id="timeline" class="section">
+      <h2>Ժամանակացույց</h2>
+      <ul>
+        <li><strong>Մ.թ.ա. 9-րդ դար</strong> — Ուրարտու</li>
+        <li><strong>Մ.թ.ա. 95-55</strong> — Տիգրան Մեծ</li>
+        <li><strong>301</strong> — Քրիստոնեություն՝ պետական կրոն</li>
+        <li><strong>1915</strong> — Ցեղասպանություն</li>
+        <li><strong>1991</strong> — Անկախություն</li>
+        <li><strong>2020</strong> — Արցախյան երկրորդ պատերազմ</li>
+      </ul>
+    </section>
+      <section class="section" id="random-fact-section">
+        <h2>Պատահական պատմական փաստ</h2>
+        <p id="randomFact">Սեղմեք կոճակը՝ իմանալու մի նոր հետաքրքիր փաստ:</p>
+        <button id="factBtn">Ցուցադրել փաստ</button>
+      </section>
+
+
+    <!-- Կապ -->
+    <section id="contact" class="section contact">
+      <h2>Կապ մեզ հետ</h2>
+      <p>Եթե ունեք հարցեր կամ առաջարկներ, կարող եք գրել՝ <a href="mailto:begpashinyan@mail.ru">begpashinyan@mail.ru</a></p>
+    </section>
+    <section id="creator-info" class="section creator-info hidden">
+        <h2>Կայքի ստեղծողը</h2>
+        <p>Այս կայքը ստեղծել է Բեգ Փաշինյանը՝ 2025 թվականին, նպատակ ունենալով մատուցել լայնածավալ և հասկանալի տեղեկատվություն Հայոց պատմության մասին։</p>
+        <p>Իմ էջը Instagram-ում՝ 
+            <a href="https://www.instagram.com/_begg11_" target="_blank" rel="noopener noreferrer" class="instagram-link">
+              @_begg11_
+            </a>
+          </p>
+          
+        <button id="closeBtn">Փակել</button>
+      </section>
+      
+      <div class="info-button-wrapper">
+        <button id="infoBtn">Իմ մասին</button>
+      </div>
+      <section id="quiz" class="section">
+        <h2>🧠 Փորձեք Ձեր գիտելիքները Հայոց պատմությունից</h2>
+      
+        <div id="quiz-container">
+          <p id="question">Հարցը կցուցադրվի այստեղ</p>
+          <div id="answers">
+            <button class="answer-btn">Պատասխան 1</button>
+            <button class="answer-btn">Պատասխան 2</button>
+            <button class="answer-btn">Պատասխան 3</button>
+            <button class="answer-btn">Պատասխան 4</button>
+          </div>
+          <p id="feedback"></p>
+          <button id="nextBtn" style="display: none;">Հաջորդ հարց</button>
+        </div>
+      </section>
+      
+      
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Հայոց Պատմություն։ Բոլոր իրավունքները պաշտպանված են։</p>
+  </footer>
+  <script>
+      
+    const facts = [
+      "Հայաստանը առաջինն է ընդունել քրիստոնեությունը որպես պետական կրոն (301 թ․):",
+      "Արենիի քարանձավում հայտնաբերվել է աշխարհում ամենահին կաշվե կոշիկը:",
+      "Տիգրան Մեծի կայսրությունը տարածվում էր Միջերկրականից մինչև Կասպյան ծով:",
+      "Անի քաղաքում կար ավելի քան 1000 եկեղեցի:",
+      "Մեսրոպ Մաշտոցը ստեղծեց հայկական այբուբենը 405 թվականին:",
+      "Կիլիկյան Հայաստանը ունեցել է եվրոպական դաշնակիցներ՝ նույնիսկ Վատիկանի հետ:"
+    ];
+  
+    const factBtn = document.getElementById('factBtn');
+    const factDisplay = document.getElementById('randomFact');
+  
+    factBtn.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      factDisplay.textContent = facts[randomIndex];
+    });
+  </script>
+  
+  <script>
+    const infoBtn = document.getElementById('infoBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const creatorInfo = document.getElementById('creator-info');
+  
+    infoBtn.addEventListener('click', () => {
+      creatorInfo.classList.add('visible');
+    });
+  
+    closeBtn.addEventListener('click', () => {
+      creatorInfo.classList.remove('visible');
+    });
+    
+  </script>
+  <script>
+      
+    const toggle = document.getElementById('darkModeToggle');
+  
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+  
+      // Փոխել կոճակի տեքստը ըստ ռեժիմի
+      if (document.body.classList.contains('dark-mode')) {
+        toggle.textContent = "☀️ Լուսային ռեժիմ";
+      } else {
+        toggle.textContent = "🌙 Մութ ռեժիմ";
+      }
+    });
+    
+  </script>
+
+  
+</body>
+</html>
+<script>
+
+const questions = [
+  {
+    question: "Ո՞ր թվականին Հայաստանը ընդունեց քրիստոնեությունը որպես պետական կրոն:",
+    answers: ["301 թ․", "451 թ․", "405 թ․", "1918 թ․"],
+    correct: 0
+  },
+  {
+    question: "Ո՞վ ստեղծեց հայոց այբուբենը:",
+    answers: ["Անանիա Շիրակացի", "Մեսրոպ Մաշտոց", "Ներսես Շնորհալի", "Տիգրան Մեծ"],
+    correct: 1
+  },
+  {
+    question: "Ո՞ր քաղաքը կոչվում էր «հազար ու մի եկեղեցիների քաղաք»:",
+    answers: ["Երևան", "Վան", "Անի", "Արտաշատ"],
+    correct: 2
+  },
+  {
+    question: "Ե՞րբ հռչակվեց Հայաստանի Հանրապետությունը անկախ:",
+    answers: ["1990 թ․", "1991 թ․", "1988 թ․", "1915 թ․"],
+    correct: 1
+  },
+  {
+    question: "Ո՞ր թագավորը ստեղծեց Մեծ Հայքի ամենամեծ տարածքը:",
+    answers: ["Արտաշես Ա", "Արշակ Բ", "Տիգրան Մեծ", "Վռամշապուհ"],
+    correct: 2
+  },
+  {
+    question: "Ո՞ր թվականին տեղի ունեցավ Վարդանանց պատերազմը:",
+    answers: ["301 թ․", "451 թ․", "782 թ․", "1918 թ․"],
+    correct: 1
+  },
+  {
+    question: "Ո՞ր քաղաքն էր Կիլիկյան Հայաստանի մայրաքաղաքը:",
+    answers: ["Սիս", "Երզնկա", "Անի", "Կարս"],
+    correct: 0
+  },
+  {
+    question: "Ո՞վ էր հայկական առաջին թագավորը ըստ պատմական աղբյուրների:",
+    answers: ["Երվանդ Ա", "Տիգրան Մեծ", "Արտավազդ", "Սարդուրի"],
+    correct: 0
+  },
+  {
+    question: "Ո՞ր թվականին տեղի ունեցավ Հայոց ցեղասպանությունը:",
+    answers: ["1918 թ․", "1920 թ․", "1915 թ․", "1945 թ․"],
+    correct: 2
+  },
+  {
+    question: "Ո՞ր գետերն են սահմանում Մեծ Հայքի տարածքը արևմուտքից և արևելքից:",
+    answers: ["Տիգրիս և Եփրատ", "Արաքս և Սևան", "Եփրատ և Կասպյան ծով", "Տիգրիս և Արարատ"],
+    correct: 0
+  }
+];
+
+let currentQuestion = 0;
+
+const questionEl = document.getElementById("question");
+const answerBtns = document.querySelectorAll(".answer-btn");
+const feedbackEl = document.getElementById("feedback");
+const nextBtn = document.getElementById("nextBtn");
+
+function loadQuestion() {
+  const q = questions[currentQuestion];
+  questionEl.textContent = `Հարց ${currentQuestion + 1} - ${q.question}`;
+  answerBtns.forEach((btn, index) => {
+    btn.textContent = q.answers[index];
+    btn.disabled = false;
+    btn.style.backgroundColor = "#7c1c1c";
+  });
+  feedbackEl.textContent = "";
+  nextBtn.style.display = "none";
+}
+
+answerBtns.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    const correctIndex = questions[currentQuestion].correct;
+    if (index === correctIndex) {
+      feedbackEl.textContent = "✔️ Ճիշտ է!";
+      btn.style.backgroundColor = "green";
+    } else {
+      feedbackEl.textContent = "❌ Սխալ է: Ճիշտ պատասխանը՝ " + questions[currentQuestion].answers[correctIndex];
+      btn.style.backgroundColor = "darkred";
+    }
+
+    // Անջատենք բոլոր կոճակները
+    answerBtns.forEach(b => b.disabled = true);
+    nextBtn.style.display = "inline-block";
+  });
+});
+
+nextBtn.addEventListener("click", () => {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    questionEl.textContent = "🎉 Դուք ավարտեցիք վիկտորինան!";
+    answerBtns.forEach(btn => btn.style.display = "none");
+    nextBtn.style.display = "none";
+    feedbackEl.textContent = "";
+  }
+});
+
+
+</script>
